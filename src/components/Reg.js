@@ -12,6 +12,9 @@ export default function Reg() {
   const [isValidated, setIsValidated]=useState(true);
   const [lastName, setLastName]=useState('');
   const [email, setEmail]=useState('')
+  const [password, setPassword]=useState('');
+  const [repeatPassword, setRepeatPassword]=useState('');
+  const [isCorrectPassword, setIsCorrectPassword]=useState(true);
   useEffect(() => {
     
 
@@ -24,7 +27,12 @@ export default function Reg() {
  
  
 }, [firstName, lastName, email, isValidated]);
-
+const handlePasswordChange=(e)=>{
+  setPassword(e.target.value);
+}
+const handleRepeatPassword=(e)=>{
+  setRepeatPassword(e.target.value);
+}
 const handleFirstChange = (e) => {
     setFirstName(e.target.value);
 }
@@ -35,8 +43,8 @@ const handleEmailChange = (e) => {
   setEmail(e.target.value)
 }
 
-const sethandleSubmitted=()=>{
-  
+const sethandleSubmitted=(e)=>{
+  e.preventDefault()
     if (firstName.length === 0 && lastName.length>0 && email.length === 0 || firstName.length === 0 ){
       setcheckFirstSubmit(true)
       
@@ -61,17 +69,22 @@ const sethandleSubmitted=()=>{
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       if (email.match(re)){
        setIsValidated(true)
-       console.log("xarow")
+
             
       }
       else{
     setIsValidated(false)
-        console.log('validate')
+      
+      }
+      if (password===repeatPassword){
+        setIsCorrectPassword(true)
+      }
+      else{
+        setIsCorrectPassword(false)
       }
      
   
 }
-console.log(isValidated)
   return (
   
 
@@ -81,7 +94,7 @@ console.log(isValidated)
 
     
 
-     <div className='modal'>
+     <form className='modal'>
       <div className='register'>
      <h1>Dima & Aiqyn</h1>
 
@@ -91,23 +104,32 @@ console.log(isValidated)
      <div className='templates'>
 <div>
   
-      <input placeholder='Enter Your Name' onChange={handleFirstChange}></input>
+      <input placeholder='Enter Your Name' type='text' onChange={handleFirstChange} name='name' required='required'></input>
       <div>{checkFirst? <div className='firstError'>Fill in the blanks</div>: ''} </div>
       </div>
       <div>
-      <input placeholder='Enter Your Surname' onChange={handleLastChange}></input>
+      <input placeholder='Enter Your Surname' type='text' onChange={handleLastChange} name='surname'></input>
       <div>{checkLast? <div className='firstError'>Fill in the blanks</div>: ''} </div>
       </div>
       <div>
 
-      <input placeholder='Enter Your Email' onChange={handleEmailChange}></input>
+      <input placeholder='Enter Your Email' type='text' onChange={handleEmailChange} name='email'></input>
       <div>{ isValidated ? '':<div className='firstError'>Please Validate your email </div>} </div>
       </div>
+      <div>
+
+     <input placeholder='Enter Your Password' onChange={handlePasswordChange} name='password' type='password'></input>
+</div> 
+<div>
+
+<input placeholder='Repeat Your Password' onChange={handleRepeatPassword} name='repPassword' type='password' ></input>
+<div>{ isCorrectPassword ? '':<div className='firstError' >Passwords don't match</div>} </div>
+</div> 
      </div>
      <div className='button'>
-     <button onClick={sethandleSubmitted}>REG IN</button>
+     <button onClick={sethandleSubmitted} name='regIn' >REG IN</button>
      </div>
-     </div>
+     </form>
    </div>
 
 </div>
