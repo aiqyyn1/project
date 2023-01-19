@@ -44,7 +44,7 @@ const handleEmailChange = (e) => {
 }
 
 const sethandleSubmitted=(e)=>{
-  e.preventDefault()
+ 
     if (firstName.length === 0 && lastName.length>0 && email.length === 0 || firstName.length === 0 ){
       setcheckFirstSubmit(true)
       
@@ -94,7 +94,7 @@ const sethandleSubmitted=(e)=>{
 
     
 
-     <form className='modal'>
+     <form className='modal' method='POST' action='/registration'>
       <div className='register'>
      <h1>Dima & Aiqyn</h1>
 
@@ -105,29 +105,29 @@ const sethandleSubmitted=(e)=>{
 <div>
   
       <input placeholder='Enter Your Name' type='text' onChange={handleFirstChange} name='name' required='required'></input>
-      <div>{checkFirst? <div className='firstError'>Fill in the blanks</div>: ''} </div>
+ 
       </div>
       <div>
-      <input placeholder='Enter Your Surname' type='text' onChange={handleLastChange} name='surname'></input>
-      <div>{checkLast? <div className='firstError'>Fill in the blanks</div>: ''} </div>
+      <input placeholder='Enter Your Surname' type='text' onChange={handleLastChange} name='surname' required='required'></input>
+   
       </div>
       <div>
 
-      <input placeholder='Enter Your Email' type='text' onChange={handleEmailChange} name='email'></input>
+      <input placeholder='Enter Your Email' type='text' onChange={handleEmailChange} name='email' required='required'></input>
       <div>{ isValidated ? '':<div className='firstError'>Please Validate your email </div>} </div>
       </div>
       <div>
 
-     <input placeholder='Enter Your Password' onChange={handlePasswordChange} name='password' type='password'></input>
+     <input placeholder='Enter Your Password' onChange={handlePasswordChange} name='password' type='password' required='required'></input>
 </div> 
 <div>
 
-<input placeholder='Repeat Your Password' onChange={handleRepeatPassword} name='repPassword' type='password' ></input>
+<input placeholder='Repeat Your Password' onChange={handleRepeatPassword} name='repPassword' type='password' required='required'></input>
 <div>{ isCorrectPassword ? '':<div className='firstError' >Passwords don't match</div>} </div>
 </div> 
      </div>
      <div className='button'>
-     <button onClick={sethandleSubmitted} name='regIn' >REG IN</button>
+     <button name='regIn' onClick={sethandleSubmitted}>REG IN</button>
      </div>
      </form>
    </div>
