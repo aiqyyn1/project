@@ -38,9 +38,7 @@ func (ctrl *Controller) Registration(c *gin.Context) {
 
 func (ctrl *Controller) SaveToDatabase(name, surname, email, password string) bool {
 	user := models.Users{Name: name, Surname: surname, Email: email, Password: password}
-	log.Print(user)
 	existUser := &models.Users{}
-	log.Print(existUser)
 	if err := ctrl.Db.Where("email = ?", email).First(existUser).Error; err != nil {
 		if err := ctrl.Db.Table("users").Create(&user).Error; err != nil {
 			log.Printf("Error creating user: %v", err)
