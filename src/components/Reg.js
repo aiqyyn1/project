@@ -1,6 +1,9 @@
 import React, { useState,useEffect } from 'react'
 import Box from '@mui/material/Box';
 import '../components/Reg.css'
+import PasswordChecklist from "react-password-checklist"
+import useNavigation from 'use-navigation';
+import useNavigate from 'react-use-navigate';
 export default function Reg() {
   
   const [firstName, setFirstName]=useState('');
@@ -15,18 +18,6 @@ export default function Reg() {
   const [password, setPassword]=useState('');
   const [repeatPassword, setRepeatPassword]=useState('');
   const [isCorrectPassword, setIsCorrectPassword]=useState(true);
-  useEffect(() => {
-    
-
-    // if (firstName.length === 0 || lastName.length === 0  || email.length === 0 ) {
-    //     setFirstError('Shouldnt be empty');
-    // } else {
-    //     setFirstError('');
-    // }
-  
- 
- 
-}, [firstName, lastName, email, isValidated]);
 const handlePasswordChange=(e)=>{
   setPassword(e.target.value);
 }
@@ -42,49 +33,13 @@ const handleLastChange = (e)=>{
 const handleEmailChange = (e) => {
   setEmail(e.target.value)
 }
-
-const sethandleSubmitted=(e)=>{
- 
-    if (firstName.length === 0 && lastName.length>0 && email.length === 0 || firstName.length === 0 ){
-      setcheckFirstSubmit(true)
-      
-     }
-     else{
-      setcheckFirstSubmit(false)
-   
-     }
-    if (lastName.length === 0 && firstName.length > 0 && email.length > 0 || lastName.length === 0){
-      setcheckLastSubmit(true)
-    }
-    else{
-      setcheckLastSubmit(false)
-    }
-    if (email.length === 0 && firstName.length > 0 && lastName.length > 0 || email.length === 0){
-      setcheckEmailSubmit(true)
-    }
-    else{
-      setcheckEmailSubmit(false)
-    }
-    const re =
-    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-      if (email.match(re)){
-       setIsValidated(true)
-
-            
-      }
-      else{
-    setIsValidated(false)
-      
-      }
-      if (password===repeatPassword){
-        setIsCorrectPassword(true)
-      }
-      else{
-        setIsCorrectPassword(false)
-      }
-     
+let navigate=useNavigate();
+const routerChange=()=>{
+  let path=`/`
+  navigate(path)
   
 }
+
   return (
   
 
@@ -94,7 +49,7 @@ const sethandleSubmitted=(e)=>{
 
     
 
-     <form className='modal' method='POST' action='/registration'>
+     <form className='modal' >
       <div className='register'>
      <h1>Dima & Aiqyn</h1>
 
@@ -113,8 +68,8 @@ const sethandleSubmitted=(e)=>{
       </div>
       <div>
 
-      <input placeholder='Enter Your Email' type='text' onChange={handleEmailChange} name='email' required='required'></input>
-      <div>{ isValidated ? '':<div className='firstError'>Please Validate your email </div>} </div>
+      <span><input placeholder='Enter Your Email'  onChange={handleEmailChange} name='email' type='email' required='required'></input></span>
+      
       </div>
       <div>
 
@@ -123,11 +78,17 @@ const sethandleSubmitted=(e)=>{
 <div>
 
 <input placeholder='Repeat Your Password' onChange={handleRepeatPassword} name='repPassword' type='password' required='required'></input>
-<div>{ isCorrectPassword ? '':<div className='firstError' >Passwords don't match</div>} </div>
+<PasswordChecklist
+				rules={["minLength","specialChar","number","capital","match"]}
+				minLength={1}
+				value={password}
+				valueAgain={repeatPassword}
+				onChange={(isValid) => {}}
+			/>
 </div> 
      </div>
      <div className='button'>
-     <button name='regIn' onClick={sethandleSubmitted}>REG IN</button>
+     <button name='regIn' onClick={routerChange}>REG IN</button>
      </div>
      </form>
    </div>
