@@ -14,6 +14,8 @@ func SetupRouters() *gin.Engine {
 	}
 	Controller := controllers.Controller{Db: db}
 	r := gin.Default()
+	r.GET("/", Controller.MainHtml)
 	r.POST("/registration", Controller.Registration)
+
 	return r
 }

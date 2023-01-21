@@ -4,5 +4,5 @@ import "backend/backend/router"
 
 func main() {
 	r := router.SetupRouters()
-	r.Run()
+	r.Run(":3000")
 }

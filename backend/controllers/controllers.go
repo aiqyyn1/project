@@ -37,14 +37,22 @@ func (ctrl *Controller) Registration(c *gin.Context) {
 }
 
 func (ctrl *Controller) SaveToDatabase(name, surname, email, password string) bool {
-	user := models.Users{Name: name, Surname: surname, Email: email, Password: password}
-	existUser := &models.Users{}
-	if err := ctrl.Db.Where("email = ?", email).First(existUser).Error; err != nil {
-		if err := ctrl.Db.Table("users").Create(&user).Error; err != nil {
+	newUser := models.Users{Name: name, Surname: surname, Email: email, Password: password}
+	userModel := models.UserModel{Db: ctrl.Db}
+
+	existUser, _ := userModel.FindOne(newUser.Email)
+
+	if existUser == nil {
+		err := userModel.Create(newUser)
+		if err != nil {
 			log.Printf("Error creating user: %v", err)
 			return false
 		}
 		return true
 	}
 	return false
+}
+
+func (ctrl *Controller) MainHtml(c *gin.Context) {
+	c.File("public/index.html")
 }
