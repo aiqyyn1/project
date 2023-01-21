@@ -15,8 +15,11 @@ func SetupRouters() *gin.Engine {
 
 	Controller := controllers.Controller{Db: db}
 	r := gin.Default()
-	r.Static("/", "../../public/")
+	r.Static("/", "public")
+	r.NoRoute(Controller.ShowMainPage)
+	
 	r.POST("/registration", Controller.Registration)
+
 
 	return r
 }

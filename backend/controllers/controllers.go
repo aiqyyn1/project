@@ -52,5 +52,8 @@ func (ctrl *Controller) SaveToDatabase(name, surname, email, password string) bo
 	}
 	return false
 }
+func (ctrl *Controller) ShowMainPage(c *gin.Context)  {
+	c.File("public\\index.html")
+}
 
 
