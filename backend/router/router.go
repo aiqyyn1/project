@@ -12,9 +12,10 @@ func SetupRouters() *gin.Engine {
 	if err != nil {
 		panic("failed to connect database")
 	}
+
 	Controller := controllers.Controller{Db: db}
 	r := gin.Default()
-	r.GET("/", Controller.MainHtml)
+	r.Static("/", "../../public/")
 	r.POST("/registration", Controller.Registration)
 
 	return r
