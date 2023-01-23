@@ -2,8 +2,10 @@ package controllers
 
 import (
 	"backend/backend/internal/models"
-	"github.com/gin-gonic/gin"
 	"log"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Controller struct {
@@ -55,5 +57,14 @@ func (ctrl *Controller) ShowMainPage(c *gin.Context) {
 }
 
 func (ctrl *Controller) JsonGetTest(c *gin.Context) {
-	
+	email, _ := c.Request.Cookie("Email")
+	name, _ := c.Request.Cookie("Name")
+	surname, _ := c.Request.Cookie("Surname")
+
+	c.JSON(http.StatusOK, gin.H{
+		"email":   email.Value,
+		"name":    name.Value,
+		"surname": surname.Value,
+	})
+
 }
