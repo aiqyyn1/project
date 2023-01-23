@@ -1,7 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-export default function Check() {
-  return (
-    <div>Check</div>
+function Check() {
+  return(
+      <div>Check</div>
   )
 }
+
+export default Check;

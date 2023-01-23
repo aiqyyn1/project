@@ -1,13 +1,12 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import '../components/Reg.css'
 import PasswordChecklist from "react-password-checklist"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 export default function Reg() {
-  
-  const [firstName, setFirstName]=useState('');
 
+<<<<<<< HEAD
   // const [emptyFirstCheck, setFirstEmptyCheck]=useState(true);
   // const [emptyLastCheck, setEmptyLastCheck]=useState(true)
   const [emptyLastText, setEmptyLastText]=useState('')
@@ -173,5 +172,7 @@ const sumbit= (e)=>{
 
 </div>
 </div>
+
+ 
   )
 }
