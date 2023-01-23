@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function App() {
+function Check() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
@@ -22,4 +22,4 @@ function App() {
     );
 }
 
-export default App;
+export default Check;
