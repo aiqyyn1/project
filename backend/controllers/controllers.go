@@ -55,8 +55,5 @@ func (ctrl *Controller) ShowMainPage(c *gin.Context) {
 }
 
 func (ctrl *Controller) JsonGetTest(c *gin.Context) {
-	c.JSON(200, gin.H{
-		"login": "Test ",
-	})
-
+	
 }
