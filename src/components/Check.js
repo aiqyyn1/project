@@ -1,7 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
-export default function Check() {
-  return (
-    <div>Check</div>
-  )
+function App() {
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        fetch('/data')
+            .then(response => response.json())
+            .then(data => setData(data))
+            .catch(error => console.error(error));
+    }, []);
+
+    if (!data) {
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <div>
+            <p>Name: {data.name}</p>
+            <p>Age: {data.age}</p>
+        </div>
+    );
 }
+
+export default App;
