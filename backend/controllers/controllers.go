@@ -14,7 +14,7 @@ type Controller struct {
 
 type User struct {
 	Email    string `form:"email" binding:"required"`
-	Password string `form:"password" binding:"required"`
+	Password string `form:"password" `
 	Name     string `form:"name" binding:"required"`
 	Surname  string `form:"surname" binding:"required"`
 }

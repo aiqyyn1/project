@@ -26,7 +26,7 @@ func SetupRouters() *gin.Engine {
 }
 
 func connectDB() *gorm.DB {
-	db, err := gorm.Open(sqlite.Open("../AbobaTube"), &gorm.Config{})
+	db, err := gorm.Open(sqlite.Open("backend/AbobaTube"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 export default function Reg() {
 
-<<<<<<< HEAD
+
   // const [emptyFirstCheck, setFirstEmptyCheck]=useState(true);
   // const [emptyLastCheck, setEmptyLastCheck]=useState(true)
   const [emptyLastText, setEmptyLastText]=useState('')
@@ -31,7 +31,7 @@ export default function Reg() {
 // const handleRepeatPassword=(e)=>{
 //   setRepeatPassword(e.target.value);
 // }
-const url=""
+const url="http://localhost:3000/registration"
 const  handle= (e) => {
     const newdata={...data}
     newdata[e.target.id]=e.target.value
